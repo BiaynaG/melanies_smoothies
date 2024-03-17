@@ -3,6 +3,7 @@ import streamlit as st
 from snowflake.snowpark.functions import col
 # To call Fruityvice API from our SniS App. We will use 'requests' library to build and send REST API calls
 import requests
+import pandas as pd
 
 #2. Write directly to the app
 st.title(":green_salad: My Parents New Healthy Diner :green_salad:")
@@ -22,7 +23,12 @@ session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'), col('SEARCH_ON'))
 
 #5. Write dataframe into our streamlit page
-st.dataframe(data=my_dataframe, use_container_width=True)
+#st.dataframe(data=my_dataframe, use_container_width=True)
+#st.stop()
+
+#16. Convert the Snowpark dataframe to a Pandas dataframe to use the LOC function
+pd_df = my_dataframe.to_pandas()
+st.dataframe(pd_df)
 st.stop()
 
 #6. Add multi-select from streamlit
