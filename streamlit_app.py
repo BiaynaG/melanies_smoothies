@@ -18,11 +18,6 @@ st.write('The name on your smoothie will be:', name_on_order)
 cnx = st.connection("snowflake")
 session = cnx.session()
 
-#14. Read from fruityvice website instead of the snowflake table
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-#Expose the JSON Data Inside the Response Object
-fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
-
 #4. Get only the column we need
 #my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 
@@ -67,16 +62,12 @@ if ingredients_list:
     ingredients_string = ''
 
     for fruit_chosen in ingredients_list:
-        #fuit_chosen = []
         ingredients_string += fruit_chosen + ' '
-            
-        #The += operator means "add this to what is already
-        #in the variable" so each time the FOR Loop is 
-        #repeated, a new fruit name is appended to the 
-        #existing string. 
-
-    #st.write(ingredients_string)
-
+	#14. Read from fruityvice website instead of the snowflake table
+	fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+	#Expose the JSON Data Inside the Response Object
+	fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
+	            
     #10. 🥋 Build a SQL Insert Statement & Test It
 
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order)
