@@ -5,8 +5,10 @@ from snowflake.snowpark.functions import col
 # To call Fruityvice API from our SniS App. We will use 'requests' library to build and send REST API calls
 import requests
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-st.text(fruityvice_response)
+# st.text(fruityvice_response.json()
 
+#Expose the JSON Data Inside the Response Object
+fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
 
 #2. Write directly to the app
 st.title(":green_salad: My Parents New Healthy Diner :green_salad:")
