@@ -1,14 +1,8 @@
 #1. Import python packages
 import streamlit as st
 from snowflake.snowpark.functions import col
-
 # To call Fruityvice API from our SniS App. We will use 'requests' library to build and send REST API calls
 import requests
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-# st.text(fruityvice_response.json()
-
-#Expose the JSON Data Inside the Response Object
-fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
 
 #2. Write directly to the app
 st.title(":green_salad: My Parents New Healthy Diner :green_salad:")
@@ -24,16 +18,21 @@ st.write('The name on your smoothie will be:', name_on_order)
 cnx = st.connection("snowflake")
 session = cnx.session()
 
+#14. Read from fruityvice website instead of the snowflake table
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+#Expose the JSON Data Inside the Response Object
+fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
+
 #4. Get only the column we need
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
+#my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 
 #5. Write dataframe into our streamlit page
-st.dataframe(data=my_dataframe, use_container_width=True)
+#st.dataframe(data=my_dataframe, use_container_width=True)
 
 #6. Add multi-select from streamlit
 ingredients_list = st.multiselect(
     'Choose up to 5 ingredients:'
-    ,my_dataframe
+    ,fv_df
     ,max_selections=5
     )
 
