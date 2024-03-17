@@ -3,7 +3,7 @@ import streamlit as st
 from snowflake.snowpark.functions import col
 
 #2. Write directly to the app
-st.title(":cup_with_straw: Get The Smoothie of Your Dreams :cup_with_straw: :sunglasses:")
+st.title(":green_salad: My Parents New Healthy Diner :green_salad:")
 st.write(
     """Make your custom Smoothie, choose the fruits that your :heart: desires!
     """
