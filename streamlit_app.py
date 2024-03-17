@@ -72,10 +72,10 @@ if ingredients_list:
 
     	#12. 🥋 Add a Submit Button, otherwise every fruit selection
     	# will create a new row in the orders table
-    	time_to_insert = st.button('Submit Order')
+	time_to_insert = st.button('Submit Order')
 
-	    #11. 🥋 Insert the Order into Snowflake
-	    #11. if ingredients_string:
+	#11. 🥋 Insert the Order into Snowflake
+	#11. if ingredients_string:
 	if time_to_insert:
 		session.sql(my_insert_stmt).collect()
 		st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
