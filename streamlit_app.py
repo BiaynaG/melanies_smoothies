@@ -55,37 +55,29 @@ ingredients_list = st.multiselect(
 # contains a string.
 
 if ingredients_list:
-    # WE DONT NEED ANYMORE AS WE WRITE LATER IN INGREDIENTS_STRING
-    #st.write(ingredients_list)
-    #st.text(ingredients_list)
-
-    ingredients_string = ''
-
-    for fruit_chosen in ingredients_list:
-        ingredients_string += fruit_chosen + ' '
-	#14. Read from fruityvice website instead of the snowflake table
+	ingredients_string = ''
+	
+	for fruit_chosen in ingredients_list:
+		ingredients_string += fruit_chosen + ' '
+		#14. Read from fruityvice website instead of the snowflake table
 	fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 	#Expose the JSON Data Inside the Response Object
 	fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
-	            
-    #10. 🥋 Build a SQL Insert Statement & Test It
-
-    my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order)
-            values ('""" + ingredients_string + """', '""" + name_on_order + """')"""
-
-    #st.write(my_insert_stmt)
-    #st.stop()
-
-    #12. 🥋 Add a Submit Button, otherwise every fruit selection
-    # will create a new row in the orders table
-    
-    time_to_insert = st.button('Submit Order')
-
-    #11. 🥋 Insert the Order into Snowflake
-    #11. if ingredients_string:
-    if time_to_insert:
-        session.sql(my_insert_stmt).collect()
 	
-        st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
+	#10. 🥋 Build a SQL Insert Statement & Test It
+	my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order) values ('""" + ingredients_string + """', '""" + name_on_order + """')"""
+
+	#st.write(my_insert_stmt)
+	#st.stop()
+
+    	#12. 🥋 Add a Submit Button, otherwise every fruit selection
+    	# will create a new row in the orders table
+    	time_to_insert = st.button('Submit Order')
+
+	    #11. 🥋 Insert the Order into Snowflake
+	    #11. if ingredients_string:
+	    if time_to_insert:
+		    session.sql(my_insert_stmt).collect()
+		    st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
     
 
