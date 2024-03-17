@@ -2,6 +2,12 @@
 import streamlit as st
 from snowflake.snowpark.functions import col
 
+# To call Fruityvice API from our SniS App. We will use 'requests' library to build and send REST API calls
+import requests
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+st.text(fruityvice_response)
+
+
 #2. Write directly to the app
 st.title(":green_salad: My Parents New Healthy Diner :green_salad:")
 st.write(
