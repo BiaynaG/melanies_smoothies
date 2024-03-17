@@ -19,15 +19,15 @@ cnx = st.connection("snowflake")
 session = cnx.session()
 
 #4. Get only the column we need
-#my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 
 #5. Write dataframe into our streamlit page
-#st.dataframe(data=my_dataframe, use_container_width=True)
+st.dataframe(data=my_dataframe, use_container_width=True)
 
 #6. Add multi-select from streamlit
 ingredients_list = st.multiselect(
     'Choose up to 5 ingredients:'
-    ,fv_df
+    ,my_dataframe
     ,max_selections=5
     )
 
