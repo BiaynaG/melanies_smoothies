@@ -73,7 +73,7 @@ if ingredients_list:
 		#15: Use fruite_chosen in the API call
 		st.subheader(fruit_chosen + ' Nutrition Information')
 		#14. Read from fruityvice website instead of the snowflake table
-		fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_chosen)
+		fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + search_on)
 		#Expose the JSON Data Inside the Response Object
 		fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
 	
