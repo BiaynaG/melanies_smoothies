@@ -6,7 +6,7 @@ import requests
 import pandas as pd
 
 #2. Write directly to the app
-st.title(":green_salad: My Parents New Healthy Diner :green_salad:")
+st.title(":cup_with_straw: Get The Smoothie of Your Dreams :cup_with_straw: :sunglasses:")
 st.write(
     """Make your custom Smoothie, choose the fruits that your :heart: desires!
     """
