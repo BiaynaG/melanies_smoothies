@@ -6,7 +6,7 @@ This repo contains various streamlit applications. Each project has it's require
 
 ## Table of Contents
 
-- [Smoothie Order App](#Smoothie Order App)
+- [Smoothie Order App](#smoothie-order-app)
 
 
 ## Smoothie Order App 
