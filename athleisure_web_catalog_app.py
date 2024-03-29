@@ -9,7 +9,7 @@ st.title('Athleisure Web Catalog')
 #my_cur = my_cnx.cursor()
 
 cnx = st.connection("snowflake")
-session = cnx.session()
+#session = cnx.session()
 cur = cnx.cursor()
  
 # run a snowflake query and put it all in a var called my_catalog 
