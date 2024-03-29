@@ -1,5 +1,5 @@
 import streamlit as st
-import snowflake.connector 
+#import snowflake.connector 
 import pandas as pd
 
 st.title('Athleisure Web Catalog')
